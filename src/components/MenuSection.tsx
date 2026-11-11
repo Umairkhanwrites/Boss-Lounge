@@ -98,7 +98,7 @@ export const MenuSection: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Price */}
+                  {/* Clean Price Display (Removed redundant Boss Lounge tag) */}
                   <div className="pt-3 mt-3 border-t border-cream-300/70 flex items-center justify-between">
                     {item.priceLarge ? (
                       <div className="text-xs font-bold text-coffee-900 font-sans">
@@ -113,10 +113,6 @@ export const MenuSection: React.FC = () => {
                         </span>
                       </div>
                     )}
-
-                    <span className="text-[11px] font-semibold text-caramel-700 bg-caramel-100 px-2 py-0.5 rounded">
-                      Boss Lounge
-                    </span>
                   </div>
 
                 </div>
