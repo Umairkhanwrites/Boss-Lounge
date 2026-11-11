@@ -72,8 +72,8 @@ export const MenuSection: React.FC = () => {
                 key={item.id}
                 className="group bg-cream-100 rounded-2xl border border-cream-300/90 overflow-hidden shadow-sm hover:shadow-md hover:border-caramel-500/40 transition-all flex flex-row sm:flex-col justify-between p-3 sm:p-0"
               >
-                {/* Photo: Thumbnail on Mobile, Full banner on Tablet/Desktop */}
-                <div className="w-24 h-24 sm:w-full sm:aspect-[16/10] relative overflow-hidden bg-cream-200 rounded-xl sm:rounded-none shrink-0 self-center sm:self-auto">
+                {/* Photo: Thumbnail on Mobile, Generous 4:3 Showcase on Desktop */}
+                <div className="w-24 h-24 sm:w-full sm:h-auto sm:aspect-[4/3] relative overflow-hidden bg-cream-200 rounded-xl sm:rounded-none shrink-0 self-center sm:self-auto">
                   <img
                     src={item.image}
                     alt={isAr ? item.nameAr : item.nameEn}
