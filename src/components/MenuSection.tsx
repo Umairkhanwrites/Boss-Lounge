@@ -100,15 +100,15 @@ export const MenuSection: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Clean Price */}
-                  <div className="pt-2 sm:pt-3 mt-2 sm:mt-3 border-t border-cream-300/70 flex items-center justify-between">
+                  {/* Clean Price Aligned to the Opposite Side */}
+                  <div className="pt-2 sm:pt-3 mt-2 sm:mt-3 border-t border-cream-300/70 flex items-center justify-end">
                     {item.priceLarge ? (
-                      <div className="text-xs sm:text-xs font-bold text-coffee-900 font-sans">
+                      <div className="text-xs sm:text-xs font-bold text-coffee-900 font-sans text-end">
                         {isAr ? item.priceLabelAr : item.priceLabelEn}{' '}
                         <span className="text-coffee-600 font-semibold">{t.menu.priceUnit}</span>
                       </div>
                     ) : (
-                      <div className="text-sm sm:text-base font-extrabold text-coffee-950 font-sans">
+                      <div className="text-sm sm:text-base font-extrabold text-coffee-950 font-sans text-end">
                         {item.price}{' '}
                         <span className="text-xs font-semibold text-coffee-600">
                           {t.menu.priceUnit}
