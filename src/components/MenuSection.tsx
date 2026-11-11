@@ -90,7 +90,7 @@ export const MenuSection: React.FC = () => {
                 </div>
 
                 {/* Details */}
-                <div className="flex-1 min-w-0 ps-3.5 sm:ps-0 sm:p-4 flex flex-col justify-between">
+                <div className="flex-1 min-w-0 ps-3.5 sm:ps-5 sm:pe-5 sm:pt-4 sm:pb-5 flex flex-col justify-between">
                   <div>
                     <h3 className="font-sans text-sm sm:text-base font-bold text-coffee-950 group-hover:text-caramel-700 transition-colors truncate sm:whitespace-normal">
                       {isAr ? item.nameAr : item.nameEn}
