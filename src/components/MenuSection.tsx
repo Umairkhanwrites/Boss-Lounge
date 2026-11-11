@@ -28,50 +28,52 @@ export const MenuSection: React.FC = () => {
   const nonHookahItems = filteredItems.filter(item => item.category !== 'hookah');
 
   return (
-    <section id="menu" className="py-20 sm:py-28 bg-[#FAF7F2] border-t border-cream-300">
-      <div className="max-w-5xl mx-auto px-6 sm:px-8">
+    <section id="menu" className="py-16 sm:py-28 bg-[#FAF7F2] border-t border-cream-300">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-xl mx-auto mb-12">
+        <div className="text-center max-w-xl mx-auto mb-8 sm:mb-12">
           <h2 className="font-sans text-2xl sm:text-3xl text-coffee-950 font-bold tracking-tight mb-2">
             {t.menu.title}
           </h2>
-          <p className="text-sm text-coffee-700 font-normal">
+          <p className="text-xs sm:text-sm text-coffee-700 font-normal">
             {t.menu.subtitle}
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-14 flex-wrap border-b border-cream-300 pb-4">
-          {categories.map((cat) => {
-            const isSelected = selectedCategory === cat.key;
-            return (
-              <button
-                key={cat.key}
-                onClick={() => setSelectedCategory(cat.key)}
-                type="button"
-                className={`px-3.5 py-1.5 text-xs sm:text-sm font-semibold tracking-wide transition-all rounded-full ${
-                  isSelected
-                    ? 'bg-coffee-900 text-cream-100 shadow-sm'
-                    : 'text-coffee-700 hover:text-coffee-950 hover:bg-cream-200'
-                }`}
-              >
-                {cat.label}
-              </button>
-            );
-          })}
+        {/* Mobile-Optimized Category Tabs: Horizontal Scroll with momentum on Mobile, Centered wrap on Desktop */}
+        <div className="sticky top-[60px] sm:top-[76px] z-30 bg-[#FAF7F2]/95 backdrop-blur-md -mx-4 px-4 sm:mx-0 sm:px-0 py-3 mb-8 sm:mb-14 border-b border-cream-300">
+          <div className="flex items-center gap-2 overflow-x-auto scrollbar-none snap-x sm:flex-wrap sm:justify-center py-1">
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat.key;
+              return (
+                <button
+                  key={cat.key}
+                  onClick={() => setSelectedCategory(cat.key)}
+                  type="button"
+                  className={`px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide whitespace-nowrap transition-all rounded-full shrink-0 snap-center ${
+                    isSelected
+                      ? 'bg-coffee-900 text-cream-100 shadow-sm scale-[1.02]'
+                      : 'text-coffee-700 hover:text-coffee-950 bg-cream-200/80 hover:bg-cream-200'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Regular Food & Beverage Items Grid */}
+        {/* Food & Beverage Items Grid - Sleek Compact Card on Mobile, 3-Col on Desktop */}
         {nonHookahItems.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 mb-12">
             {nonHookahItems.map((item) => (
               <div
                 key={item.id}
-                className="group bg-cream-100 rounded-2xl border border-cream-300/90 overflow-hidden shadow-sm hover:shadow-md hover:border-caramel-500/40 transition-all flex flex-col justify-between"
+                className="group bg-cream-100 rounded-2xl border border-cream-300/90 overflow-hidden shadow-sm hover:shadow-md hover:border-caramel-500/40 transition-all flex flex-row sm:flex-col justify-between p-3 sm:p-0"
               >
-                {/* Authentic Food Photo with Fallback */}
-                <div className="aspect-[16/10] relative overflow-hidden bg-cream-200">
+                {/* Photo: Thumbnail on Mobile, Full banner on Tablet/Desktop */}
+                <div className="w-24 h-24 sm:w-full sm:aspect-[16/10] relative overflow-hidden bg-cream-200 rounded-xl sm:rounded-none shrink-0 self-center sm:self-auto">
                   <img
                     src={item.image}
                     alt={isAr ? item.nameAr : item.nameEn}
@@ -87,26 +89,26 @@ export const MenuSection: React.FC = () => {
                   />
                 </div>
 
-                {/* Item Details */}
-                <div className="p-4 flex flex-col justify-between flex-grow">
+                {/* Details */}
+                <div className="flex-1 min-w-0 ps-3.5 sm:ps-0 sm:p-4 flex flex-col justify-between">
                   <div>
-                    <h3 className="font-sans text-base font-bold text-coffee-950 group-hover:text-caramel-700 transition-colors">
+                    <h3 className="font-sans text-sm sm:text-base font-bold text-coffee-950 group-hover:text-caramel-700 transition-colors truncate sm:whitespace-normal">
                       {isAr ? item.nameAr : item.nameEn}
                     </h3>
-                    <p className="text-xs text-coffee-500 font-medium mt-0.5">
+                    <p className="text-[11px] sm:text-xs text-coffee-500 font-medium mt-0.5 truncate sm:whitespace-normal">
                       {isAr ? item.nameEn : item.nameAr}
                     </p>
                   </div>
 
-                  {/* Clean Price Display (Removed redundant Boss Lounge tag) */}
-                  <div className="pt-3 mt-3 border-t border-cream-300/70 flex items-center justify-between">
+                  {/* Clean Price */}
+                  <div className="pt-2 sm:pt-3 mt-2 sm:mt-3 border-t border-cream-300/70 flex items-center justify-between">
                     {item.priceLarge ? (
-                      <div className="text-xs font-bold text-coffee-900 font-sans">
+                      <div className="text-xs sm:text-xs font-bold text-coffee-900 font-sans">
                         {isAr ? item.priceLabelAr : item.priceLabelEn}{' '}
                         <span className="text-coffee-600 font-semibold">{t.menu.priceUnit}</span>
                       </div>
                     ) : (
-                      <div className="text-base font-extrabold text-coffee-950 font-sans">
+                      <div className="text-sm sm:text-base font-extrabold text-coffee-950 font-sans">
                         {item.price}{' '}
                         <span className="text-xs font-semibold text-coffee-600">
                           {t.menu.priceUnit}
@@ -123,48 +125,48 @@ export const MenuSection: React.FC = () => {
 
         {/* Dedicated Elegant Hookah (المعسلات) Board */}
         {(selectedCategory === 'all' || selectedCategory === 'hookah') && (
-          <div className="mt-8 bg-cream-100 rounded-3xl border border-cream-300 p-6 sm:p-10 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-cream-300 mb-8">
+          <div className="mt-8 bg-cream-100 rounded-2xl sm:rounded-3xl border border-cream-300 p-4 sm:p-10 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 sm:pb-6 border-b border-cream-300 mb-6 sm:mb-8">
               <div>
                 <div className="inline-flex items-center gap-1.5 text-xs font-bold text-caramel-700 uppercase tracking-wider mb-1">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{isAr ? 'قسم المعسلات الفاخرة' : 'Premium Shisha Lounge'}</span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-coffee-950">
+                <h3 className="text-lg sm:text-2xl font-bold text-coffee-950">
                   {t.menu.categories.hookah}
                 </h3>
               </div>
 
-              <div className="inline-flex items-center gap-2 bg-cream-200 px-4 py-2 rounded-xl text-xs font-semibold text-coffee-800 border border-cream-300 self-start sm:self-auto">
-                <Flame className="w-4 h-4 text-caramel-600" />
+              <div className="inline-flex items-center gap-1.5 bg-cream-200 px-3 py-1.5 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-semibold text-coffee-800 border border-cream-300 self-start sm:self-auto">
+                <Flame className="w-3.5 h-3.5 text-caramel-600" />
                 <span>{isAr ? 'طعم أصلي وفحم طبيعي ممتاز' : 'Natural Coals & Premium Quality'}</span>
               </div>
             </div>
 
             {/* Flavor Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
               {hookahItems.map((item) => {
                 const isRefill = item.id === 'hk-refill';
                 return (
                   <div
                     key={item.id}
-                    className={`p-4 rounded-xl border transition-all flex items-center justify-between ${
+                    className={`p-3 sm:p-4 rounded-xl border transition-all flex items-center justify-between ${
                       isRefill
                         ? 'bg-caramel-100/60 border-caramel-300/80'
                         : 'bg-cream-50/70 border-cream-300/70 hover:border-caramel-500/40 hover:bg-cream-50'
                     }`}
                   >
                     <div>
-                      <h4 className="font-sans font-bold text-sm text-coffee-950">
+                      <h4 className="font-sans font-bold text-xs sm:text-sm text-coffee-950">
                         {isAr ? item.nameAr : item.nameEn}
                       </h4>
-                      <p className="text-[11px] text-coffee-500 font-medium">
+                      <p className="text-[10px] sm:text-[11px] text-coffee-500 font-medium">
                         {isAr ? item.nameEn : item.nameAr}
                       </p>
                     </div>
 
                     <div className="text-end ps-3">
-                      <span className="text-base font-extrabold text-coffee-950 font-sans">
+                      <span className="text-sm sm:text-base font-extrabold text-coffee-950 font-sans">
                         {item.price}
                       </span>{' '}
                       <span className="text-xs font-bold text-caramel-700 font-sans">
@@ -176,7 +178,7 @@ export const MenuSection: React.FC = () => {
               })}
             </div>
 
-            <div className="mt-8 pt-4 border-t border-cream-300 text-center text-xs text-coffee-600 font-medium">
+            <div className="mt-6 pt-4 border-t border-cream-300 text-center text-[11px] sm:text-xs text-coffee-600 font-medium">
               {isAr 
                 ? 'جلسات مخصصة ومريحة • فحم طبيعي مستمر متجدد طوال جلستكم' 
                 : 'Dedicated comfortable lounge seating • Continuously refreshed natural coals'}

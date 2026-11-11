@@ -42,7 +42,7 @@ export const LocationHoursSection: React.FC = () => {
               {t.location.hoursTitle}
             </span>
             <p className="text-xl sm:text-2xl font-extrabold text-coffee-950 font-sans tracking-tight">
-              3:00 PM — 6:00 AM
+              <span dir="ltr" className="inline-block">3:00 PM — 6:00 AM</span>
             </p>
             <p className="text-sm text-coffee-600 font-normal">
               {t.location.hours}
@@ -57,12 +57,12 @@ export const LocationHoursSection: React.FC = () => {
             <p className="text-sm font-semibold text-coffee-900 leading-relaxed">
               {fullAddress}
             </p>
-            <div className="flex items-center gap-4 pt-1">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 href="https://maps.google.com/?q=Boss+Lounge+Madinah"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-coffee-900 hover:text-caramel-700 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cream-200 hover:bg-cream-300 text-xs font-bold text-coffee-900 transition-colors"
               >
                 <span>{t.location.getDirections}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -70,7 +70,7 @@ export const LocationHoursSection: React.FC = () => {
               <button
                 onClick={handleCopy}
                 type="button"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-coffee-600 hover:text-coffee-900 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cream-200 hover:bg-cream-300 text-xs font-medium text-coffee-700 hover:text-coffee-900 transition-colors"
               >
                 {copied ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
                 <span>{copied ? (isAr ? 'تم النسخ' : 'Copied') : (isAr ? 'نسخ العنوان' : 'Copy')}</span>
@@ -100,9 +100,9 @@ export const LocationHoursSection: React.FC = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-coffee-900 hover:text-caramel-700 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-caramel-600 hover:bg-caramel-700 text-xs font-bold text-cream-50 transition-colors w-full sm:w-auto justify-center sm:justify-start"
             >
-              <span>{t.location.whatsappInquiry}: +966 53 763 1823</span>
+              <span>{t.location.whatsappInquiry}: <span dir="ltr">+966 53 763 1823</span></span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
